@@ -55,7 +55,7 @@
               "entryPoints": [
                 {
                   "html": "./src/index.html",
-                  "js": "./src/Renderer.bs.js",
+                  "js": "./src/Renderer.js",
                   "name": "main_window"
                 }
               ]

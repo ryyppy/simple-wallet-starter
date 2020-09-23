@@ -91,3 +91,4 @@ out/
 # ReScript
 lib
 .merlin
+.bsb.lock
