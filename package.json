@@ -1,0 +1,96 @@
+{
+  "name": "electron-forge-rescript-example",
+  "productName": "electron-test-webpack",
+  "version": "1.0.0",
+  "description": "Example template for Electron Forge, ReScript and TailwindCSS",
+  "main": ".webpack/main",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\"",
+    "res:start": "bsb -make-world -w",
+    "res:clean": "bsb -clean-world",
+    "res:build": "bsb -make-world"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Patrick Stapfer",
+    "email": "ryyppy@users.noreply.github.com"
+  },
+  "license": "MIT",
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "electron_test_webpack"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ],
+      "plugins": [
+        [
+          "@electron-forge/plugin-webpack",
+          {
+            "mainConfig": "./webpack.main.config.js",
+            "renderer": {
+              "config": "./webpack.renderer.config.js",
+              "entryPoints": [
+                {
+                  "html": "./src/index.html",
+                  "js": "./src/Renderer.bs.js",
+                  "name": "main_window"
+                }
+              ]
+            }
+          }
+        ]
+      ]
+    }
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "6.0.0-beta.53",
+    "@electron-forge/maker-deb": "6.0.0-beta.53",
+    "@electron-forge/maker-rpm": "6.0.0-beta.53",
+    "@electron-forge/maker-squirrel": "6.0.0-beta.53",
+    "@electron-forge/maker-zip": "6.0.0-beta.53",
+    "@electron-forge/plugin-webpack": "6.0.0-beta.53",
+    "@hot-loader/react-dom": "^16.13.0",
+    "@marshallofsound/webpack-asset-relocator-loader": "^0.5.0",
+    "autoprefixer": "^10.0.0",
+    "bs-platform": "^8.3.0",
+    "copy-webpack-plugin": "^6.1.1",
+    "css-loader": "^4.2.1",
+    "electron": "10.1.2",
+    "node-loader": "^1.0.1",
+    "postcss": "^8.0.6",
+    "postcss-loader": "^4.0.2",
+    "prettier": "^2.1.2",
+    "react-hot-loader": "^4.12.21",
+    "style-loader": "^1.2.1"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "reason-react": "^0.9.1",
+    "tailwindcss": "^1.8.10"
+  }
+}

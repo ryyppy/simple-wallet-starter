@@ -1,0 +1,9 @@
+@tailwind base;
+
+@tailwind components;
+
+body {
+  @apply font-sans bg-white;
+}
+@tailwind utilities;
+
