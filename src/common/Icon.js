@@ -59,6 +59,27 @@ var Copy = {
   make: Icon$Copy
 };
 
+function Icon$UpDownArrow(Props) {
+  var classNameOpt = Props.className;
+  var className = classNameOpt !== undefined ? classNameOpt : "";
+  return React.createElement("svg", {
+              height: "10",
+              width: "18",
+              fill: "none",
+              viewBox: "0 0 18 10"
+            }, React.createElement("path", {
+                  className: "stroke-current " + className,
+                  d: "M4.203 8.595V1.688M.75 5.141l3.453-3.453 3.454 3.453M13.796 1.688v6.907M17.25 5.141l-3.454 3.454-3.453-3.454",
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  strokeWidth: "1.5"
+                }));
+}
+
+var UpDownArrow = {
+  make: Icon$UpDownArrow
+};
+
 function Icon$ArrowUp(Props) {
   var classNameOpt = Props.className;
   var className = classNameOpt !== undefined ? classNameOpt : "";
@@ -78,6 +99,27 @@ function Icon$ArrowUp(Props) {
 
 var ArrowUp = {
   make: Icon$ArrowUp
+};
+
+function Icon$ArrowDown(Props) {
+  var classNameOpt = Props.className;
+  var className = classNameOpt !== undefined ? classNameOpt : "";
+  return React.createElement("svg", {
+              className: "stroke-current " + className,
+              height: "24",
+              width: "24",
+              fill: "none",
+              strokeLinecap: "round",
+              strokeLinejoin: "round",
+              strokeWidth: "2",
+              viewBox: "0 0 24 24"
+            }, React.createElement("path", {
+                  d: "M12 5v14M19 12l-7 7-7-7"
+                }));
+}
+
+var ArrowDown = {
+  make: Icon$ArrowDown
 };
 
 function Icon$VerticalDots(Props) {
@@ -114,6 +156,8 @@ var VerticalDots = {
 
 exports.Clipboard = Clipboard;
 exports.Copy = Copy;
+exports.UpDownArrow = UpDownArrow;
 exports.ArrowUp = ArrowUp;
+exports.ArrowDown = ArrowDown;
 exports.VerticalDots = VerticalDots;
 /* react Not a pure module */

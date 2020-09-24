@@ -2,20 +2,48 @@
 'use strict';
 
 var Link = require("../components/Link.js");
+var Curry = require("bs-platform/lib/js/curry.js");
+var Route = require("../common/Route.js");
 var React = require("react");
+var Belt_Array = require("bs-platform/lib/js/belt_Array.js");
 
 function Sidebar(Props) {
+  var currentRoute = Props.currentRoute;
+  var wallets = Props.wallets;
+  var onSelection = Props.onSelection;
+  var walletLinks = Belt_Array.map(wallets, (function (w) {
+          var onClick = function ($$event) {
+            Curry._1(onSelection, w);
+            $$event.preventDefault();
+            
+          };
+          return React.createElement("li", {
+                      key: w.address,
+                      className: "cursor-pointer",
+                      onClick: onClick
+                    }, w.name);
+        }));
+  var navLinks = Belt_Array.map([
+        /* Dashboard */0,
+        /* Transactions */1
+      ], (function (route) {
+          var activeclass = route === currentRoute ? "bg-blue -mx-4 pl-4" : "";
+          var text = Route.toString(route);
+          return React.createElement("li", {
+                      key: text,
+                      className: activeclass + " py-2"
+                    }, React.createElement(Link.make, {
+                          route: route,
+                          children: text
+                        }));
+        }));
   return React.createElement("div", {
               className: "w-1/4 bg-blue-dark text-white h-screen"
             }, React.createElement("div", {
                   className: "ml-4"
-                }, React.createElement("div", undefined, React.createElement(Link.make, {
-                          route: /* Dashboard */0,
-                          children: "Dashboard"
-                        })), React.createElement("div", undefined, React.createElement(Link.make, {
-                          route: /* Transactions */1,
-                          children: "Transactions"
-                        }))));
+                }, React.createElement("ul", undefined, walletLinks)), React.createElement("div", {
+                  className: "ml-4 mt-10"
+                }, React.createElement("ul", undefined, navLinks)));
 }
 
 var make = Sidebar;

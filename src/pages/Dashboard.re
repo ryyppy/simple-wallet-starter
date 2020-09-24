@@ -1,37 +1,3 @@
-module Button = {
-  [@react.component]
-  let make = (~onClick, ~children: React.element) => {
-    <button
-      onClick
-      className="inline-block h-8 group bg-blue active:bg-blue-dark px-4 py-2 text-white uppercase font-bold text-10 rounded-md">
-      children
-    </button>;
-  };
-};
-
-module SendButton = {
-  [@react.component]
-  let make = (~onClick: ReactEvent.Mouse.t => unit) => {
-    <Button onClick>
-      <span className="flex items-center">
-        <Icon.ArrowUp
-          className="h-4 text-white-50-tr group-hover:text-white"
-        />
-        {React.string("send")}
-      </span>
-    </Button>;
-  };
-};
-
-module DotButton = {
-  [@react.component]
-  let make = (~onClick) => {
-    <button onClick className="flex justify-center w-8 text-blue-dark">
-      <Icon.VerticalDots />
-    </button>;
-  };
-};
-
 module Clicker = {
   type data =
     | Init
@@ -103,31 +69,49 @@ module Clicker = {
   };
 };
 
-[@react.component]
-let make = () => {
-  let onSendClick = evt => {
-    ReactEvent.Mouse.preventDefault(evt);
-    Js.log("test");
-  };
-  let onDotClick = evt => {
-    ReactEvent.Mouse.preventDefault(evt);
-    Js.log("dot test ");
-  };
+type state =
+  | Init
+  | Loading
+  | Success(TezStats.Account.t)
+  | Failed(string);
 
-  <div>
-    <div className="flex justify-end items-center w-full pr-4 h-12 bg-white">
-      <SendButton onClick=onSendClick />
-      <DotButton onClick=onDotClick />
+[@react.component]
+let make = (~wallet: Wallet.t) => {
+  let (state, setState) = React.useState(_ => Init);
+  React.useEffect1(
+    () => {
+      setState(_ => Loading);
+      let onDone = data => setState(_ => Success(data));
+      let onError = code =>
+        setState(_ => Failed("Error code:" ++ Belt.Int.toString(code)));
+      let cancel =
+        TezStats.Account.query(
+          ~address=wallet.address,
+          ~onDone,
+          ~onError,
+          (),
+        );
+      Some(cancel);
+    },
+    [|wallet.address|],
+  );
+
+  let content =
+    switch (state) {
+    | Init
+    | Loading => <div> {React.string("...")} </div>
+    | Success(account) =>
+      <AccountOverview
+        avatar=?{wallet.avatar}
+        name={wallet.name}
+        address={account.address}
+        balance={account.total_balance}
+      />
+    | Failed(error) => <div> {React.string(error)} </div>
+    };
+  <MainLayout>
+    <div className="w-full" style={ReactDOMStyle.make(~maxWidth="34rem", ())}>
+      content
     </div>
-    <main className="flex justify-center bg-grey-10 w-full min-h-screen pt-16">
-      <div className="w-full" style={ReactDOMStyle.make(~maxWidth="34rem", ())}>
-        <AccountOverview
-          avatar="/static/img/default-avatar.png"
-          name="Bruno"
-          address="tz1LbSsDSmekew3prdDGx1nS22ie6jjBN6B3"
-          balance=42.
-        />
-      </div>
-    </main>
-  </div>;
+  </MainLayout>;
 };

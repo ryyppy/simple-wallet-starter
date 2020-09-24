@@ -16,14 +16,19 @@ let make = () => {
   let url = ReasonReactRouter.useUrl();
   let route = Route.fromAnchor(url.hash);
 
+  let wallets = [|TezStats.Stub.bruno, TezStats.Stub.steve|];
+  let (selectedWallet, setSelectedWallet) = React.useState(_ => wallets[0]);
   let page =
     switch (route) {
-    | Dashboard => <Dashboard />
-    | Transactions => <TransactionPage />
+    | Dashboard => <Dashboard wallet=selectedWallet />
+    | Transactions => <TransactionPage wallet=selectedWallet />
     | NotFound => <Page404 />
     };
 
-  <span className="flex"> <Sidebar /> page </span>;
+  <span className="flex">
+    <Sidebar currentRoute=route onSelection={w => setSelectedWallet(_ => w)} wallets />
+    page
+  </span>;
 };
 
 let make = (HotReloader.hot(. module_))(. make);

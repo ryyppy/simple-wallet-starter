@@ -36,6 +36,21 @@ module Copy = {
   };
 };
 
+module UpDownArrow = {
+  [@react.component]
+  let make = (~className="") => {
+    <svg width="18" height="10" viewBox="0 0 18 10" fill="none">
+      <path
+        d="M4.203 8.595V1.688M.75 5.141l3.453-3.453 3.454 3.453M13.796 1.688v6.907M17.25 5.141l-3.454 3.454-3.453-3.454"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className={"stroke-current " ++ className}
+      />
+    </svg>;
+  };
+};
+
 module ArrowUp = {
   [@react.component]
   let make = (~className="") => {
@@ -49,6 +64,23 @@ module ArrowUp = {
       strokeLinejoin="round"
       className={"stroke-current " ++ className}>
       <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>;
+  };
+};
+
+module ArrowDown = {
+  [@react.component]
+  let make = (~className="") => {
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={"stroke-current " ++ className}>
+      <path d="M12 5v14M19 12l-7 7-7-7" />
     </svg>;
   };
 };

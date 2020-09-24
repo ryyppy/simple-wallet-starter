@@ -26,6 +26,19 @@ function toHref(t) {
   }
 }
 
+function toString(t) {
+  switch (t) {
+    case /* Dashboard */0 :
+        return "Dashboard";
+    case /* Transactions */1 :
+        return "Transactions";
+    case /* NotFound */2 :
+        return "";
+    
+  }
+}
+
 exports.fromAnchor = fromAnchor;
 exports.toHref = toHref;
+exports.toString = toString;
 /* No side effect */
