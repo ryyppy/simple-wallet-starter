@@ -13,10 +13,17 @@ module HotReloader = {
 // This is the core part of your App
 [@react.component]
 let make = () => {
-  <span className="flex">
-    <Sidebar/>
-    <Dashboard/>
-  </span>;
-}
+  let url = ReasonReactRouter.useUrl();
+  let route = Route.fromAnchor(url.hash);
+
+  let page =
+    switch (route) {
+    | Dashboard => <Dashboard />
+    | Transactions => <TransactionPage />
+    | NotFound => <Page404 />
+    };
+
+  <span className="flex"> <Sidebar /> page </span>;
+};
 
 let make = (HotReloader.hot(. module_))(. make);

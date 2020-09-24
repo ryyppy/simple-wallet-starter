@@ -10,10 +10,10 @@ function Sidebar(Props) {
             }, React.createElement("div", {
                   className: "ml-4"
                 }, React.createElement("div", undefined, React.createElement(Link.make, {
-                          href: "foo",
+                          route: /* Dashboard */0,
                           children: "Dashboard"
                         })), React.createElement("div", undefined, React.createElement(Link.make, {
-                          href: "bar",
+                          route: /* Transactions */1,
                           children: "Transactions"
                         }))));
 }

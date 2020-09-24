@@ -1,9 +1,12 @@
 [@react.component]
-let make = (~href: string, ~children) => {
+let make = (~route: Route.t, ~children) => {
   <a
     className="cursor-pointer"
     onClick={event => {
-      Js.log(href);
+      //Js.log(href);
+
+      ReasonReactRouter.push(Route.toHref(route));
+
       event->ReactEvent.Mouse.preventDefault;
     }}>
     children
