@@ -2,13 +2,16 @@
 'use strict';
 
 var React = require("react");
+var Sidebar = require("../pages/Sidebar.js");
 var Dashboard = require("../pages/Dashboard.js");
 var ReactHotLoader = require("react-hot-loader");
 
 var HotReloader = {};
 
 function App(Props) {
-  return React.createElement("div", undefined, React.createElement(Dashboard.make, {}));
+  return React.createElement("span", {
+              className: "flex"
+            }, React.createElement(Sidebar.make, {}), React.createElement(Dashboard.make, {}));
 }
 
 var make = ReactHotLoader.hot(module)(App);

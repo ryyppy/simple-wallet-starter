@@ -4,6 +4,7 @@
 var Icon = require("../common/Icon.js");
 var Curry = require("bs-platform/lib/js/curry.js");
 var React = require("react");
+var AccountOverview = require("../components/AccountOverview.js");
 
 function Dashboard$Button(Props) {
   var onClick = Props.onClick;
@@ -132,8 +133,18 @@ function Dashboard(Props) {
                     }), React.createElement(Dashboard$DotButton, {
                       onClick: onDotClick
                     })), React.createElement("main", {
-                  className: "bg-grey-10 w-full min-h-screen"
-                }, React.createElement(Dashboard$Clicker, {})));
+                  className: "flex justify-center bg-grey-10 w-full min-h-screen pt-16"
+                }, React.createElement("div", {
+                      className: "w-full",
+                      style: {
+                        maxWidth: "34rem"
+                      }
+                    }, React.createElement(AccountOverview.make, {
+                          avatar: "/static/img/default-avatar.png",
+                          name: "Bruno",
+                          address: "tz1LbSsDSmekew3prdDGx1nS22ie6jjBN6B3",
+                          balance: 42
+                        }))));
 }
 
 var make = Dashboard;

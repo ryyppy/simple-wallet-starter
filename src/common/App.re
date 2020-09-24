@@ -13,9 +13,10 @@ module HotReloader = {
 // This is the core part of your App
 [@react.component]
 let make = () => {
-  <div>
+  <span className="flex">
+    <Sidebar/>
     <Dashboard/>
-  </div>;
+  </span>;
 }
 
 let make = (HotReloader.hot(. module_))(. make);

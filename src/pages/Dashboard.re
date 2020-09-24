@@ -119,6 +119,15 @@ let make = () => {
       <SendButton onClick=onSendClick />
       <DotButton onClick=onDotClick />
     </div>
-    <main className="bg-grey-10 w-full min-h-screen"> <Clicker /> </main>
+    <main className="flex justify-center bg-grey-10 w-full min-h-screen pt-16">
+      <div className="w-full" style={ReactDOMStyle.make(~maxWidth="34rem", ())}>
+        <AccountOverview
+          avatar="/static/img/default-avatar.png"
+          name="Bruno"
+          address="tz1LbSsDSmekew3prdDGx1nS22ie6jjBN6B3"
+          balance=42.
+        />
+      </div>
+    </main>
   </div>;
 };

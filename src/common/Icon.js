@@ -3,6 +3,62 @@
 
 var React = require("react");
 
+function Icon$Clipboard(Props) {
+  var classNameOpt = Props.className;
+  var className = classNameOpt !== undefined ? classNameOpt : "";
+  return React.createElement("svg", {
+              className: "stroke-current " + className,
+              height: "24",
+              width: "24",
+              fill: "none",
+              strokeLinecap: "round",
+              strokeLinejoin: "round",
+              strokeWidth: "2",
+              viewBox: "0 0 24 24"
+            }, React.createElement("path", {
+                  d: "M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"
+                }), React.createElement("rect", {
+                  height: "4",
+                  width: "8",
+                  rx: "1",
+                  ry: "1",
+                  x: "8",
+                  y: "2"
+                }));
+}
+
+var Clipboard = {
+  make: Icon$Clipboard
+};
+
+function Icon$Copy(Props) {
+  var classNameOpt = Props.className;
+  var className = classNameOpt !== undefined ? classNameOpt : "";
+  return React.createElement("svg", {
+              className: "stroke-current " + className,
+              height: "24",
+              width: "24",
+              fill: "none",
+              strokeLinecap: "round",
+              strokeLinejoin: "round",
+              strokeWidth: "2",
+              viewBox: "0 0 24 24"
+            }, React.createElement("rect", {
+                  height: "13",
+                  width: "13",
+                  rx: "2",
+                  ry: "2",
+                  x: "9",
+                  y: "9"
+                }), React.createElement("path", {
+                  d: "M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"
+                }));
+}
+
+var Copy = {
+  make: Icon$Copy
+};
+
 function Icon$ArrowUp(Props) {
   var classNameOpt = Props.className;
   var className = classNameOpt !== undefined ? classNameOpt : "";
@@ -56,6 +112,8 @@ var VerticalDots = {
   make: Icon$VerticalDots
 };
 
+exports.Clipboard = Clipboard;
+exports.Copy = Copy;
 exports.ArrowUp = ArrowUp;
 exports.VerticalDots = VerticalDots;
 /* react Not a pure module */
