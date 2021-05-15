@@ -1,5 +1,4 @@
-%raw
-"import './css/main.css'";
+%%raw("import './css/main.css'")
 
 // This is the entry point for our webclient
 

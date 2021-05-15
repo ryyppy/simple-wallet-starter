@@ -9,10 +9,7 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
-    "lint": "echo \"No linting configured\"",
-    "res:start": "bsb -make-world -w",
-    "res:clean": "bsb -clean-world",
-    "res:build": "bsb -make-world"
+    "lint": "echo \"No linting configured\""
   },
   "keywords": [],
   "author": {
@@ -75,7 +72,7 @@
     "@hot-loader/react-dom": "^16.13.0",
     "@marshallofsound/webpack-asset-relocator-loader": "^0.5.0",
     "autoprefixer": "^10.0.0",
-    "bs-platform": "^8.3.0",
+    "rescript": "9.1.2",
     "copy-webpack-plugin": "^6.1.1",
     "css-loader": "^4.2.1",
     "electron": "10.1.2",
@@ -90,7 +87,7 @@
     "electron-squirrel-startup": "^1.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "reason-react": "^0.9.1",
+    "@rescript/react": "0.10.3",
     "tailwindcss": "^1.8.10"
   }
 }
